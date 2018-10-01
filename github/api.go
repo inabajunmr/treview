@@ -52,10 +52,12 @@ func Find(lang string, span Span) ([]Repository, error) {
 		lang := cleansing(s.Find("span[itemprop='programmingLanguage']").Text())
 		star := cleansingNum(s.Find("div.f6.text-gray.mt-2 > a:nth-child(2)").Text())
 		fork := cleansingNum(s.Find("div.f6.text-gray.mt-2 > a:nth-child(3)").Text())
-		starBySpan := cleansingNum(s.Find("ddiv.f6.text-gray.mt-2 > span.d-inline-block.float-sm-right").Text())
+		starBySpan := cleansingNum(
+			strings.Replace(s.Find(".float-sm-right").Text(), "stars today", "", -1))
 
-		repo := Repository{Name: name, URL: url, Description: description,
-			Lang: lang, Star: star,
+		repo := Repository{Name: name, URL: "https://github.com" + url,
+			Description: description,
+			Lang:        lang, Star: star,
 			Fork:       fork,
 			StarBySpan: starBySpan}
 
