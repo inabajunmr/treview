@@ -1,8 +1,9 @@
 package github
 
 import (
-	"io/ioutil"
-	"net/http"
+	"strconv"
+
+	"github.com/PuerkitoBio/goquery"
 )
 
 // Span is span for trending search
@@ -20,6 +21,7 @@ const (
 // Repository is expression type for github repository on trending.
 type Repository struct {
 	Name        string
+	URL         string
 	Description string
 	Lang        string
 	Star        int
@@ -33,18 +35,32 @@ func Find(lang string, span Span) ([]Repository, error) {
 	url := "https://github.com/trending/" + lang + "?" + "since=" + getQueryForSpan(span)
 
 	// access to github
-	resp, err := http.Get(url)
+	doc, err := goquery.NewDocument(url)
+
 	if err != nil {
 		return nil, err
 	}
 
-	defer resp.Body.Close()
+	// correct repositories
+	repos := make([]Repository, 25)
+	doc.Find("div.explore-content > ol > li").Each(func(i int, s *goquery.Selection) {
+		name := s.Find("a").Text()
+		url, _ := s.Find("a").Attr("href")
+		description := s.Find("div.py-1").Text()
+		lang := s.Find("span[itemprop='programmingLanguage']").Text()
+		star, _ := strconv.Atoi(s.Find("div.f6.text-gray.mt-2 > a:nth-child(2)").Text())
+		fork, _ := strconv.Atoi(s.Find("div.f6.text-gray.mt-2 > a:nth-child(3)").Text())
+		starBySpan, _ := strconv.Atoi(s.Find("ddiv.f6.text-gray.mt-2 > span.d-inline-block.float-sm-right").Text())
 
-	bytes, _ := ioutil.ReadAll(resp.Body)
-	body := string(bytes)
+		repo := Repository{Name: name, URL: url, Description: description,
+			Lang: lang, Star: star,
+			Fork:       fork,
+			StarBySpan: starBySpan}
 
-	// TODO parse html and struct Repositories
-	return nil, nil
+		repos[i] = repo
+	})
+
+	return repos, nil
 }
 
 func getQueryForSpan(span Span) string {
