@@ -1,7 +1,9 @@
 package github
 
 import (
+	"fmt"
 	"strconv"
+	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 )
@@ -44,13 +46,13 @@ func Find(lang string, span Span) ([]Repository, error) {
 	// correct repositories
 	repos := make([]Repository, 25)
 	doc.Find("div.explore-content > ol > li").Each(func(i int, s *goquery.Selection) {
-		name := s.Find("a").Text()
+		name := cleansing(s.Find("div.d-inline-block.col-9.mb-1 > h3 > a").Text())
 		url, _ := s.Find("a").Attr("href")
-		description := s.Find("div.py-1").Text()
-		lang := s.Find("span[itemprop='programmingLanguage']").Text()
-		star, _ := strconv.Atoi(s.Find("div.f6.text-gray.mt-2 > a:nth-child(2)").Text())
-		fork, _ := strconv.Atoi(s.Find("div.f6.text-gray.mt-2 > a:nth-child(3)").Text())
-		starBySpan, _ := strconv.Atoi(s.Find("ddiv.f6.text-gray.mt-2 > span.d-inline-block.float-sm-right").Text())
+		description := cleansing(s.Find("div.py-1").Text())
+		lang := cleansing(s.Find("span[itemprop='programmingLanguage']").Text())
+		star := cleansingNum(s.Find("div.f6.text-gray.mt-2 > a:nth-child(2)").Text())
+		fork := cleansingNum(s.Find("div.f6.text-gray.mt-2 > a:nth-child(3)").Text())
+		starBySpan := cleansingNum(s.Find("ddiv.f6.text-gray.mt-2 > span.d-inline-block.float-sm-right").Text())
 
 		repo := Repository{Name: name, URL: url, Description: description,
 			Lang: lang, Star: star,
@@ -61,6 +63,28 @@ func Find(lang string, span Span) ([]Repository, error) {
 	})
 
 	return repos, nil
+}
+
+// remove \n and trim
+func cleansing(value string) string {
+	return strings.Trim(strings.Replace(value, "\n", "", -1), " ")
+}
+
+// cleansing and parse int
+func cleansingNum(value string) int {
+	val, _ := strconv.Atoi(strings.Replace(cleansing(value), ",", "", -1))
+	return val
+}
+
+// Print data for Repository
+func (repo *Repository) Print() {
+	fmt.Println("Name:" + repo.Name)
+	fmt.Println("URL:" + repo.URL)
+	fmt.Println("Description:" + repo.Description)
+	fmt.Println("Lang:" + repo.Lang)
+	fmt.Println("Star:" + strconv.Itoa(repo.Star))
+	fmt.Println("StarBySpan:" + strconv.Itoa(repo.StarBySpan))
+	fmt.Println("Fork:" + strconv.Itoa(repo.Fork))
 }
 
 func getQueryForSpan(span Span) string {
