@@ -46,25 +46,28 @@ func Find(lang string, span Span) ([]Repository, error) {
 	// correct repositories
 	repos := make([]Repository, 25)
 	doc.Find("div.explore-content > ol > li").Each(func(i int, s *goquery.Selection) {
-		name := cleansing(s.Find("div.d-inline-block.col-9.mb-1 > h3 > a").Text())
-		url, _ := s.Find("a").Attr("href")
-		description := cleansing(s.Find("div.py-1").Text())
-		lang := cleansing(s.Find("span[itemprop='programmingLanguage']").Text())
-		star := cleansingNum(s.Find("div.f6.text-gray.mt-2 > a:nth-child(2)").Text())
-		fork := cleansingNum(s.Find("div.f6.text-gray.mt-2 > a:nth-child(3)").Text())
-		starBySpan := cleansingNum(
-			strings.Replace(s.Find(".float-sm-right").Text(), "stars today", "", -1))
-
-		repo := Repository{Name: name, URL: "https://github.com" + url,
-			Description: description,
-			Lang:        lang, Star: star,
-			Fork:       fork,
-			StarBySpan: starBySpan}
-
-		repos[i] = repo
+		repos[i] = getRepositoryBySelection(s)
 	})
 
 	return repos, nil
+}
+
+func getRepositoryBySelection(s *goquery.Selection) Repository {
+	name := cleansing(s.Find("div.d-inline-block.col-9.mb-1 > h3 > a").Text())
+	url, _ := s.Find("a").Attr("href")
+	description := cleansing(s.Find("div.py-1").Text())
+	lang := cleansing(s.Find("span[itemprop='programmingLanguage']").Text())
+	star := cleansingNum(s.Find("div.f6.text-gray.mt-2 > a:nth-child(2)").Text())
+	fork := cleansingNum(s.Find("div.f6.text-gray.mt-2 > a:nth-child(3)").Text())
+	starBySpan := cleansingNum(
+		strings.Replace(s.Find(".float-sm-right").Text(), "stars today", "", -1))
+
+	return Repository{Name: name, URL: "https://github.com" + url,
+		Description: description,
+		Lang:        lang, Star: star,
+		Fork:       fork,
+		StarBySpan: starBySpan}
+
 }
 
 // remove \n and trim
