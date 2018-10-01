@@ -1,5 +1,10 @@
 package github
 
+import (
+	"io/ioutil"
+	"net/http"
+)
+
 // Span is span for trending search
 type Span int
 
@@ -22,9 +27,35 @@ type Repository struct {
 	Fork        int
 }
 
-func find(lang string, span Span) []Repository {
+// Find trending repositories by lang and span
+func Find(lang string, span Span) ([]Repository, error) {
 	// assemble url for trending
-	// Get by http
-	// parse html and struct Repositories
-	return nil
+	url := "https://github.com/trending/" + lang + "?" + "since=" + getQueryForSpan(span)
+
+	// access to github
+	resp, err := http.Get(url)
+	if err != nil {
+		return nil, err
+	}
+
+	defer resp.Body.Close()
+
+	bytes, _ := ioutil.ReadAll(resp.Body)
+	body := string(bytes)
+
+	// TODO parse html and struct Repositories
+	return nil, nil
+}
+
+func getQueryForSpan(span Span) string {
+	switch span {
+	case Today:
+		return "today"
+	case Week:
+		return "week"
+	case Month:
+		return "month"
+	default:
+		return "today"
+	}
 }
