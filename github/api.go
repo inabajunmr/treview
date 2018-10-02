@@ -83,13 +83,12 @@ func cleansingNum(value string) int {
 
 // Print data for Repository
 func (repo *Repository) Print() {
-	fmt.Println("Name:" + repo.Name)
-	fmt.Println("URL:" + repo.URL)
-	fmt.Println("Description:" + repo.Description)
-	fmt.Println("Lang:" + repo.Lang)
-	fmt.Println("Star:" + strconv.Itoa(repo.Star))
-	fmt.Println("StarBySpan:" + strconv.Itoa(repo.StarBySpan))
-	fmt.Println("Fork:" + strconv.Itoa(repo.Fork))
+	fmt.Println(repo.Name + "\t" + repo.URL)
+	fmt.Println("Lang:" + repo.Lang + "\t" +
+		"Fork:" + strconv.Itoa(repo.Fork) + "\t" +
+		"⭐️" + strconv.Itoa(repo.Star) + "\t" +
+		"⭐️" + strconv.Itoa(repo.StarBySpan) + " stars today")
+	fmt.Println(repo.Description)
 }
 
 func getQueryForSpan(span Span) string {
