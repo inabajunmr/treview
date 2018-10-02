@@ -1,5 +1,5 @@
 # treview
-GitHub Trending viewer
+treview is viewer for GitHub Trending.
 
 # Install
 ```
