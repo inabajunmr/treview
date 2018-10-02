@@ -104,3 +104,17 @@ func getQueryForSpan(span Span) string {
 		return "today"
 	}
 }
+
+// GetSpanByString Span const by string
+func GetSpanByString(span string) Span {
+	switch span {
+	case "today":
+		return Today
+	case "week":
+		return Week
+	case "month":
+		return Month
+	default:
+		return Today
+	}
+}
