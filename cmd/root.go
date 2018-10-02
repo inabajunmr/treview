@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/inabajunmr/treview/github"
+
 	"github.com/spf13/cobra"
 )
 
@@ -20,6 +22,18 @@ var rootCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
+		span := github.GetSpanByString(s)
+
+		repos, err := github.Find(l, span)
+		if err != nil {
+			println(err)
+			os.Exit(1)
+		}
+
+		for _, repo := range repos {
+			fmt.Println("------------------------")
+			repo.Print()
+		}
 	},
 }
 
