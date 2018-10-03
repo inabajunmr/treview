@@ -35,3 +35,37 @@ Lang:Go	Fork:76	⭐️587	⭐️140 stars today
 Mobile Device Management server
 ------------------------
 ```
+
+# Appendix (Using as GitHub Trending API for Golang)
+[![GoDoc](https://godoc.org/github.com/inabajunmr/treview/github?status.svg)](https://godoc.org/github.com/inabajunmr/treview/github)
+
+## Sample
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/inabajunmr/treview/github"
+)
+
+func main() {
+	repos, err := github.Find("go", span)
+	if err != nil {
+		println(err)
+		os.Exit(1)
+	}
+
+	span := github.GetSpanByString("today")
+
+	repos, err := github.Find(l, span)
+	if err != nil {
+		println(err)
+		os.Exit(1)
+	}
+
+	for _, repo := range repos {
+		fmt.Println("------------------------")
+		repo.Print()
+	}
+}
+```
