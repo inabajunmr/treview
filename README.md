@@ -3,7 +3,7 @@ treview is viewer for GitHub Trending.
 
 # Feature
 
- * You can see only today's newcomer repository.
+treview shows only today's newcomer repository.
 
 # Install
 ```
