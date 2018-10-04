@@ -54,15 +54,9 @@ import (
 )
 
 func main() {
-	repos, err := github.Find("go", span)
-	if err != nil {
-		println(err)
-		os.Exit(1)
-	}
-
 	span := github.GetSpanByString("today")
 
-	repos, err := github.Find(l, span)
+	repos, err := github.FindTrending(l, span)
 	if err != nil {
 		println(err)
 		os.Exit(1)
