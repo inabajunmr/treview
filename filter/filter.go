@@ -26,7 +26,7 @@ type readRepository struct {
 // OnlyNewComer filter only new comer(user never see)
 func (f *Filter) OnlyNewComer(repos []github.Repository) []github.Repository {
 
-	if exists(f.Path) == false {
+	if !exists(f.Path) {
 		if err := os.Mkdir(f.Path, 0777); err != nil {
 			fmt.Println(err)
 			print("Can not make dir for treview. path:"+f.Path, err)

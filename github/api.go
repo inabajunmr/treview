@@ -2,6 +2,8 @@ package github
 
 import (
 	"fmt"
+	"net/http"
+	"os"
 	"strconv"
 	"strings"
 
@@ -37,7 +39,13 @@ func FindTrending(lang string, span Span) ([]Repository, error) {
 	url := "https://github.com/trending/" + lang + "?" + "since=" + getQueryForSpan(span)
 
 	// access to github
-	doc, err := goquery.NewDocument(url)
+	resp, err := http.Get(url)
+	if err != nil {
+		print("Can not access to " + url)
+		print(err)
+		os.Exit(1)
+	}
+	doc, err := goquery.NewDocumentFromReader(resp.Body)
 
 	if err != nil {
 		return nil, err
