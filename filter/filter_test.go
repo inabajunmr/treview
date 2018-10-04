@@ -6,6 +6,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/inabajunmr/treview/github"
 	"github.com/jonboulle/clockwork"
 )
@@ -13,10 +14,10 @@ import (
 func TestOnlyNewComer(t *testing.T) {
 	rand.Seed(time.Now().UnixNano())
 
-	test1 := github.Repository{Name: string(rand.Intn(10))}
-	test2 := github.Repository{Name: string(rand.Intn(10))}
-	test3 := github.Repository{Name: string(rand.Intn(10))}
-	test4 := github.Repository{Name: string(rand.Intn(10))}
+	test1 := github.Repository{Name: uuid.New().String()}
+	test2 := github.Repository{Name: uuid.New().String()}
+	test3 := github.Repository{Name: uuid.New().String()}
+	test4 := github.Repository{Name: uuid.New().String()}
 
 	initialRepos := []github.Repository{test1, test2, test3}
 
