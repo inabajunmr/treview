@@ -1,4 +1,7 @@
 # treview
+
+[![codecov](https://codecov.io/gh/inabajunmr/treview/branch/master/graph/badge.svg)](https://codecov.io/gh/inabajunmr/treview)
+
 treview is viewer for GitHub Trending.
 
 # Feature
