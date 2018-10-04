@@ -21,6 +21,10 @@ var rootCmd = &cobra.Command{
 	Use: "treview is cli viewer for GitHub Trending.",
 	Run: func(cmd *cobra.Command, args []string) {
 		usr, err := user.Current()
+		if err != nil {
+			os.Exit(1)
+		}
+
 		path := usr.HomeDir + "/.treview"
 
 		l, err := cmd.Flags().GetString("lang")
