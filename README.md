@@ -1,6 +1,7 @@
 # treview
 
 [![codecov](https://codecov.io/gh/inabajunmr/treview/branch/master/graph/badge.svg)](https://codecov.io/gh/inabajunmr/treview)
+[![CircleCI](https://circleci.com/gh/inabajunmr/treview/tree/master.svg?style=svg)]
 
 treview is viewer for GitHub Trending.
 
