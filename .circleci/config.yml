@@ -21,6 +21,9 @@ jobs:
           name: Run unit tests
           command: |
             make test | tee ${TEST_RESULTS}/go-test.out
+      - run: go get github.com/pierrre/gotestcover
+      - run: gotestcover -coverprofile=coverage.txt ./...
+      - run: bash <(curl -s https://codecov.io/bash)            
       - save_cache:
           key: v1-pkg-cache
           paths:
