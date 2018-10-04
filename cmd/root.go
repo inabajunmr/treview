@@ -34,6 +34,7 @@ var rootCmd = &cobra.Command{
 			// using default from conf
 			langs = readConfig(cpath).Lang
 		} else if l == "all" {
+			// when exists config, I wanna see all
 			langs = append(langs, "")
 		} else {
 			langs = append(langs, l)
