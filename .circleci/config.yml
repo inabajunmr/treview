@@ -1,0 +1,10 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/golang
+    parallelism: 1
+    steps:
+      - run:
+          command: make test
+
