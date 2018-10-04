@@ -23,6 +23,17 @@ Flags:
   -s, --span string     trending span (default "Today")
 ```
 
+## Config
+If you have file `~/.treview/.config`, you can set default lang by treview.
+
+### Example
+If you have follow config, you can see only golang and Javascript repository by `treview`(without lang flag).
+```yaml
+lang:  [go, javascript]
+```
+
+If you want to find all langage, you set `all` as lang flag.
+
 # Example
 ```
 $ treview -l go
