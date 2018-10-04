@@ -33,6 +33,8 @@ var rootCmd = &cobra.Command{
 		if len(l) == 0 && exists(cpath) {
 			// using default from conf
 			langs = readConfig(cpath).Lang
+		} else if l == "all" {
+			langs = append(langs, "")
 		} else {
 			langs = append(langs, l)
 		}
