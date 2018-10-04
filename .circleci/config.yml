@@ -1,0 +1,35 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.8
+    working_directory: /go/src/github.com/inabajunmr/treview
+    environment:
+      TEST_RESULTS: /tmp/test-results
+    steps:
+      - checkout
+      - run: mkdir -p $TEST_RESULTS
+      - restore_cache:
+          keys:
+            - v1-pkg-cache
+      - run: go get github.com/PuerkitoBio/goquery
+      - run: go get github.com/inabajunmr/kevaf
+      - run: go get github.com/jonboulle/clockwork
+      - run: go get github.com/spf13/cobra
+      - run: go get github.com/ghodss/yaml
+      - run:
+          name: Run unit tests
+          command: |
+            make test | tee ${TEST_RESULTS}/go-test.out
+      - run: go get github.com/pierrre/gotestcover
+      - run: gotestcover -coverprofile=coverage.txt ./...
+      - run: bash <(curl -s https://codecov.io/bash)            
+      - save_cache:
+          key: v1-pkg-cache
+          paths:
+            - "/go/pkg"
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: raw-test-output
+      - store_test_results:
+          path: /tmp/test-results
