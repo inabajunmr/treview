@@ -21,7 +21,10 @@ func TestOnlyNewComer(t *testing.T) {
 	// First day
 	dir := os.TempDir()
 	m, _ := kevaf.NewMap(dir)
-	m.RemoveAll()
+	err := m.RemoveAll()
+	if err != nil {
+		t.Fatal("Something wrong happen to prepare test.")
+	}
 
 	f1 := Filter{Time: clockwork.NewFakeClockAt(time.Date(2001, 1, 1, 0, 0, 0, 0, time.UTC)), Path: dir}
 	repos := f1.OnlyNewComer(initialRepos)
