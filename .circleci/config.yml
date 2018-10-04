@@ -17,6 +17,7 @@ jobs:
       - run: go get github.com/jonboulle/clockwork
       - run: go get github.com/spf13/cobra
       - run: go get github.com/ghodss/yaml
+      - run: go get github.com/google/uuid
       - run:
           name: Run unit tests
           command: |

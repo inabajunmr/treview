@@ -1,24 +1,29 @@
 package filter
 
 import (
+	"math/rand"
 	"os"
 	"testing"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/inabajunmr/treview/github"
 	"github.com/jonboulle/clockwork"
 )
 
 func TestOnlyNewComer(t *testing.T) {
-	test1 := github.Repository{Name: "test1"}
-	test2 := github.Repository{Name: "test2"}
-	test3 := github.Repository{Name: "test3"}
-	test4 := github.Repository{Name: "test4"}
+	rand.Seed(time.Now().UnixNano())
+
+	test1 := github.Repository{Name: uuid.New().String()}
+	test2 := github.Repository{Name: uuid.New().String()}
+	test3 := github.Repository{Name: uuid.New().String()}
+	test4 := github.Repository{Name: uuid.New().String()}
 
 	initialRepos := []github.Repository{test1, test2, test3}
 
 	// First day
 	dir := os.TempDir()
+
 	f1 := Filter{Time: clockwork.NewFakeClockAt(time.Date(2001, 1, 1, 0, 0, 0, 0, time.UTC)), Path: dir}
 	repos := f1.OnlyNewComer(initialRepos)
 
