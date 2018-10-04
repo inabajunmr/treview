@@ -12,6 +12,11 @@ jobs:
       - restore_cache:
           keys:
             - v1-pkg-cache
+      - run: go get github.com/PuerkitoBio/goquery
+      - run: go get github.com/inabajunmr/kevaf
+      - run: go get github.com/jonboulle/clockwork
+      - run: go get github.com/spf13/cobra
+      - run: go get github.com/ghodss/yaml
       - run:
           name: Run unit tests
           command: |
