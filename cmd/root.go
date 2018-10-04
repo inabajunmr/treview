@@ -28,7 +28,7 @@ var rootCmd = &cobra.Command{
 		span := github.GetSpanByString(s)
 
 		// access to github
-		repos, err := github.Find(l, span)
+		repos, err := github.FindTrending(l, span)
 		if err != nil {
 			println(err)
 			os.Exit(1)

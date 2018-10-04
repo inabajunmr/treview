@@ -5,8 +5,8 @@ import (
 	"testing"
 )
 
-func TestFind(t *testing.T) {
-	repos, err := Find("", Today)
+func TestFindTrending(t *testing.T) {
+	repos, err := FindTrending("", Today)
 
 	if err != nil {
 		t.Fatal("Error by find.", err)
@@ -23,7 +23,7 @@ func TestFind(t *testing.T) {
 }
 
 func TestFindSpecificLang(t *testing.T) {
-	repos, err := Find("go", Today)
+	repos, err := FindTrending("go", Today)
 
 	if err != nil {
 		t.Fatal("Error by find.", err)

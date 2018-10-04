@@ -31,8 +31,8 @@ type Repository struct {
 	Fork        int
 }
 
-// Find trending repositories by lang and span
-func Find(lang string, span Span) ([]Repository, error) {
+// FindTrending repositories by lang and span
+func FindTrending(lang string, span Span) ([]Repository, error) {
 	// assemble url for trending
 	url := "https://github.com/trending/" + lang + "?" + "since=" + getQueryForSpan(span)
 
