@@ -27,7 +27,7 @@ Flags:
 If you have file `~/.treview/.config`, you can set default lang by treview.
 
 ### Example
-If you have follow config, you can see only golang and Javascript repository by `treview`(without lang flag).
+If you have follow config, treview show only Golang and JavaScript repositories by `treview` command (without lang flag).
 ```yaml
 lang:  [go, javascript]
 ```
