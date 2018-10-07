@@ -54,3 +54,26 @@ func TestOnlyNewComer(t *testing.T) {
 		t.Fatal("Not return expected repository.")
 	}
 }
+
+func TestIsSameDate(t *testing.T) {
+	d1 := time.Date(2001, 1, 1, 0, 0, 0, 0, time.UTC)
+	d2 := time.Date(2001, 1, 1, 12, 0, 0, 0, time.UTC)
+	d3 := time.Date(2001, 1, 2, 0, 0, 0, 0, time.UTC)
+	d4 := time.Date(2002, 1, 1, 0, 0, 0, 0, time.UTC)
+
+	if !isSameDate(d1, d2) {
+		// Different hour but same date.
+		t.Fatal("Same date.")
+	}
+
+	if isSameDate(d1, d3) {
+		// Different date
+		t.Fatal("Same date.")
+	}
+
+	if isSameDate(d1, d4) {
+		// Different yeah
+		t.Fatal("Same date.")
+	}
+
+}
