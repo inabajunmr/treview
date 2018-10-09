@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/inabajunmr/kevaf"
-	"github.com/inabajunmr/treview/github"
+	"github.com/inabajunmr/treview/github/trending"
 	"github.com/jonboulle/clockwork"
 )
 
@@ -19,12 +19,12 @@ type Filter struct {
 }
 
 type readRepository struct {
-	Repository github.Repository `json:"repository"`
-	ReadDate   time.Time         `json:"time"`
+	Repository trending.Repository `json:"repository"`
+	ReadDate   time.Time           `json:"time"`
 }
 
 // OnlyNewComer filter only new comer(user never see)
-func (f *Filter) OnlyNewComer(repos []github.Repository) []github.Repository {
+func (f *Filter) OnlyNewComer(repos []trending.Repository) []trending.Repository {
 
 	if !exists(f.Path) {
 		if err := os.Mkdir(f.Path, 0777); err != nil {
@@ -39,7 +39,7 @@ func (f *Filter) OnlyNewComer(repos []github.Repository) []github.Repository {
 		os.Exit(1)
 	}
 
-	filteredRepos := make([]github.Repository, 0)
+	filteredRepos := make([]trending.Repository, 0)
 
 	for _, repo := range repos {
 		key := createKey(repo.Name)
@@ -60,7 +60,7 @@ func (f *Filter) OnlyNewComer(repos []github.Repository) []github.Repository {
 	return filteredRepos
 }
 
-func (f Filter) isVisible(savedRepo []byte, repo github.Repository) bool {
+func (f Filter) isVisible(savedRepo []byte, repo trending.Repository) bool {
 	var readRepo readRepository
 	err := json.Unmarshal(savedRepo, &readRepo)
 	if err != nil {
@@ -77,7 +77,7 @@ func (f Filter) isVisible(savedRepo []byte, repo github.Repository) bool {
 	return false
 }
 
-func markAsRead(kvs *kevaf.Map, repo github.Repository, time clockwork.Clock) {
+func markAsRead(kvs *kevaf.Map, repo trending.Repository, time clockwork.Clock) {
 	val, err := json.Marshal(&readRepository{repo, time.Now()})
 	if err != nil {
 		print("Unexpected error. Can't serialize this repository.")
