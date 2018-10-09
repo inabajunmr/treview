@@ -7,19 +7,19 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/inabajunmr/treview/github"
+	"github.com/inabajunmr/treview/github/trending"
 	"github.com/jonboulle/clockwork"
 )
 
 func TestOnlyNewComer(t *testing.T) {
 	rand.Seed(time.Now().UnixNano())
 
-	test1 := github.Repository{Name: uuid.New().String()}
-	test2 := github.Repository{Name: uuid.New().String()}
-	test3 := github.Repository{Name: uuid.New().String()}
-	test4 := github.Repository{Name: uuid.New().String()}
+	test1 := trending.Repository{Name: uuid.New().String()}
+	test2 := trending.Repository{Name: uuid.New().String()}
+	test3 := trending.Repository{Name: uuid.New().String()}
+	test4 := trending.Repository{Name: uuid.New().String()}
 
-	initialRepos := []github.Repository{test1, test2, test3}
+	initialRepos := []trending.Repository{test1, test2, test3}
 
 	// First day
 	dir := os.TempDir()
@@ -33,7 +33,7 @@ func TestOnlyNewComer(t *testing.T) {
 	}
 
 	// First day(but second time)
-	secondRepos := []github.Repository{test1, test2}
+	secondRepos := []trending.Repository{test1, test2}
 	repos = f1.OnlyNewComer(secondRepos)
 
 	// All new comer
@@ -43,7 +43,7 @@ func TestOnlyNewComer(t *testing.T) {
 
 	// Second day
 	f2 := Filter{Time: clockwork.NewFakeClockAt(time.Date(2001, 1, 2, 0, 0, 0, 0, time.UTC)), Path: dir}
-	thirdRepos := []github.Repository{test1, test4}
+	thirdRepos := []trending.Repository{test1, test4}
 
 	repos = f2.OnlyNewComer(thirdRepos)
 	if len(repos) != 1 {

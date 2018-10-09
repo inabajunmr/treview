@@ -8,7 +8,7 @@ import (
 
 	"github.com/ghodss/yaml"
 	"github.com/inabajunmr/treview/filter"
-	"github.com/inabajunmr/treview/github"
+	"github.com/inabajunmr/treview/github/trending"
 	"github.com/jonboulle/clockwork"
 	"github.com/spf13/cobra"
 )
@@ -49,12 +49,12 @@ var rootCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		span := github.GetSpanByString(s)
+		span := trending.GetSpanByString(s)
 
 		// access to github
-		var repos []github.Repository
+		var repos []trending.Repository
 		for _, lang := range langs {
-			findRepos, err := github.FindTrending(lang, span)
+			findRepos, err := trending.FindTrending(lang, span)
 			if err != nil {
 				println(err)
 				os.Exit(1)
