@@ -65,13 +65,13 @@ package main
 
 import (
 	"fmt"
-	"github.com/inabajunmr/treview/github"
+	"github.com/inabajunmr/treview/github/trending"
 )
 
 func main() {
-	span := github.GetSpanByString("today")
+	span := trending.GetSpanByString("today")
 
-	repos, err := github.FindTrending(l, span)
+	repos, err := trending.FindTrending(l, span)
 	if err != nil {
 		println(err)
 		os.Exit(1)
