@@ -13,6 +13,11 @@ var configCmd = &cobra.Command{
 		fmt.Println("config called")
 
 		// TODO
+		// check config file
+		// if exist
+		// load and modify and write
+		// if not exist
+		// create file and write config
 	},
 }
 
