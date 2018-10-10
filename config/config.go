@@ -29,3 +29,17 @@ func Read(path string) Config {
 
 	return d
 }
+
+// Write config
+func Write(path string, conf Config) {
+	buf, err := yaml.Marshal(conf)
+	if err != nil {
+		print("Failed to write config.")
+		os.Exit(1)
+	}
+
+	if err = ioutil.WriteFile(path, buf, 6440); err != nil {
+		print("Failed to write config.")
+		os.Exit(1)
+	}
+}
