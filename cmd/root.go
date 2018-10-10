@@ -2,20 +2,15 @@ package cmd
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"os/user"
 
-	"github.com/ghodss/yaml"
+	"github.com/inabajunmr/treview/config"
 	"github.com/inabajunmr/treview/filter"
 	"github.com/inabajunmr/treview/github/trending"
 	"github.com/jonboulle/clockwork"
 	"github.com/spf13/cobra"
 )
-
-type config struct {
-	Lang []string `yaml:"lang"`
-}
 
 var rootCmd = &cobra.Command{
 	Use: "treview is cli viewer for GitHub Trending.",
@@ -36,7 +31,7 @@ var rootCmd = &cobra.Command{
 		cpath := path + "/.config"
 		if len(l) == 0 && exists(cpath) {
 			// using default from conf
-			langs = readConfig(cpath).Lang
+			langs = config.Read(cpath).Lang
 		} else if l == "all" {
 			// when exists config, I wanna see all
 			langs = append(langs, "")
@@ -102,21 +97,4 @@ func init() {
 func exists(name string) bool {
 	_, err := os.Stat(name)
 	return !os.IsNotExist(err)
-}
-
-func readConfig(path string) config {
-	buf, err := ioutil.ReadFile(path)
-	if err != nil {
-		print("Config is something wrong.")
-		os.Exit(1)
-	}
-
-	var d config
-	err = yaml.Unmarshal(buf, &d)
-	if err != nil {
-		print("Config is something wrong.")
-		os.Exit(1)
-	}
-
-	return d
 }
