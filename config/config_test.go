@@ -16,9 +16,9 @@ func TestWriteRead(t *testing.T) {
 
 	conf := Config{Lang: []string{"go", "javascript"}}
 	fmt.Println(path)
-	Write(path, conf)
+	write(path, conf)
 
-	if !reflect.DeepEqual(Read(path), conf) {
+	if !reflect.DeepEqual(read(path), conf) {
 		t.Fatal("Not equal wrriten conf and read conf.")
 	}
 

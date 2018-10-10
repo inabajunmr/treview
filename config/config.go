@@ -13,7 +13,7 @@ type Config struct {
 }
 
 // Read config
-func Read(path string) Config {
+func read(path string) Config {
 	buf, err := ioutil.ReadFile(path)
 	if err != nil {
 		print("Config is something wrong.")
@@ -31,7 +31,7 @@ func Read(path string) Config {
 }
 
 // Write config
-func Write(path string, conf Config) {
+func write(path string, conf Config) {
 	buf, err := yaml.Marshal(conf)
 	if err != nil {
 		print("Failed to write config.")
@@ -42,4 +42,15 @@ func Write(path string, conf Config) {
 		print("Failed to write config.")
 		os.Exit(1)
 	}
+}
+
+// AddLangs to config
+func AddLangs(path string, langs []string) {
+	// TODO
+
+}
+
+// GetLangs from config
+func GetLangs(path string) []string {
+	return read(path).Lang
 }

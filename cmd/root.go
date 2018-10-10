@@ -31,7 +31,7 @@ var rootCmd = &cobra.Command{
 		cpath := path + "/.config"
 		if len(l) == 0 && exists(cpath) {
 			// using default from conf
-			langs = config.Read(cpath).Lang
+			langs = config.GetLangs(cpath)
 		} else if l == "all" {
 			// when exists config, I wanna see all
 			langs = append(langs, "")
