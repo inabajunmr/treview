@@ -19,14 +19,18 @@ var configCmd = &cobra.Command{
 
 		allLangs, err := trending.FindLangs()
 		if err != nil {
-			fmt.Println("Can not get langs from GitHub.")
+			fmt.Println("Prompt error.")
 			os.Exit(1)
 		}
+
 		var langs []string
 
 		for {
 
 			flangs, err := filterLang(allLangs)
+			if err != nil {
+				os.Exit(1)
+			}
 
 			prompt := promptui.Select{
 				Label: "Select lang",
