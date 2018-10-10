@@ -38,7 +38,7 @@ func Write(path string, conf Config) {
 		os.Exit(1)
 	}
 
-	if err = ioutil.WriteFile(path, buf, 6440); err != nil {
+	if err = ioutil.WriteFile(path, buf, 0666); err != nil {
 		print("Failed to write config.")
 		os.Exit(1)
 	}
