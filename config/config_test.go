@@ -12,7 +12,7 @@ import (
 func TestWriteRead(t *testing.T) {
 	// First day
 	dir := os.TempDir()
-	path := dir + uuid.New().String()
+	path := dir + "/" + uuid.New().String()
 
 	conf := Config{Lang: []string{"go", "javascript"}}
 	fmt.Println(path)
