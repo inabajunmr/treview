@@ -44,10 +44,10 @@ func write(path string, conf Config) {
 	}
 }
 
-// AddLangs to config
-func AddLangs(path string, langs []string) {
-	// TODO
-
+// SetLangs to config
+func SetLangs(path string, langs []string) {
+	conf := Config{Lang: langs}
+	write(path, conf)
 }
 
 // GetLangs from config

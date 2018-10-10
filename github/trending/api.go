@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"regexp"
 	"strconv"
 	"strings"
 
@@ -58,6 +59,36 @@ func FindTrending(lang string, span Span) ([]Repository, error) {
 	})
 
 	return repos, nil
+}
+
+// FindLangs from GitHub trending
+func FindLangs() ([]string, error) {
+	url := "https://github.com/trending"
+
+	// access to github
+	resp, err := http.Get(url)
+	if err != nil {
+		print("Can not access to " + url)
+		print(err)
+		os.Exit(1)
+	}
+	doc, err := goquery.NewDocumentFromReader(resp.Body)
+
+	if err != nil {
+		return nil, err
+	}
+
+	var langs []string
+	doc.Find("div.select-menu.js-menu-container.js-select-menu:nth-child(2) div.select-menu-list .select-menu-item").Each(func(i int, s *goquery.Selection) {
+		lang, _ := s.Attr("href")
+		langURL := cleansing(lang)
+		rep := regexp.MustCompile(`.*/(.*)\?since=daily`)
+		query := rep.ReplaceAllString(langURL, "$1")
+		langs = append(langs, query)
+	})
+
+	return langs, nil
+
 }
 
 func getRepositoryBySelection(s *goquery.Selection) Repository {

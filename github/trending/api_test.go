@@ -69,3 +69,10 @@ func TestGetSpanByString(t *testing.T) {
 	}
 
 }
+
+func TestFindLangs(t *testing.T) {
+	langs, _ := FindLangs()
+	if len(langs) == 0 {
+		t.Fatal("Can not get langs from GitHub.")
+	}
+}
