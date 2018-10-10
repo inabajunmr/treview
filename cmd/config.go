@@ -74,7 +74,7 @@ func filterLang(allLangs []string) ([]string, error) {
 
 		var fLangs []string
 		for _, lang := range allLangs {
-			if strings.Index(lang, filter) != -1 {
+			if strings.Contains(lang, filter) {
 				fLangs = append(fLangs, lang)
 			}
 		}
