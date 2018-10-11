@@ -1,7 +1,6 @@
 package filter
 
 import (
-	"math/rand"
 	"os"
 	"testing"
 	"time"
@@ -12,8 +11,6 @@ import (
 )
 
 func TestOnlyNewComer(t *testing.T) {
-	rand.Seed(time.Now().UnixNano())
-
 	test1 := trending.Repository{Name: uuid.New().String()}
 	test2 := trending.Repository{Name: uuid.New().String()}
 	test3 := trending.Repository{Name: uuid.New().String()}
