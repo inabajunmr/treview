@@ -19,16 +19,24 @@ $ go get github.com/inabajunmr/treview
 $ treview -h
 Usage:
   treview is cli viewer for GitHub Trending. [flags]
+  treview [command]
+
+Available Commands:
+  config      Setting for default langage configration.
+  help        Help about any command
 
 Flags:
   -f, --filter string   all or new (default "new")
   -h, --help            help for treview
   -l, --lang string     filter by lang
   -s, --span string     trending span (default "Today")
+
+Use "treview [command] --help" for more information about a command.
 ```
 
 ## Config
 If you have file `~/.treview/.config`, you can set default lang by treview.
+You can set config by `treview config` command too.
 
 ### Example
 If you have follow config, treview show only Golang and JavaScript repositories by `treview` command (without lang flag).
