@@ -3,11 +3,14 @@
 [![codecov](https://codecov.io/gh/inabajunmr/treview/branch/master/graph/badge.svg)](https://codecov.io/gh/inabajunmr/treview)
 ![CircleCI](https://circleci.com/gh/inabajunmr/treview/tree/master.svg?style=svg)
 
-treview is viewer for GitHub Trending.
+Viewer for GitHub Trending.
+
+![treview](https://user-images.githubusercontent.com/10000393/46803178-6ea89600-cd9a-11e8-8ca6-ad52c58ed942.gif)
 
 # Feature
 
-treview shows only today's newcomer repository.
+* shows only today's newcomer repository.(You never see same project everyday!)
+* define default langage that you want to see
 
 # Install
 ```
@@ -47,24 +50,6 @@ lang:  [go, javascript]
 ```
 
 If you want to find all langage, you set `all` as lang flag.
-
-# Example
-```
-$ treview -l go
-■---------------------------------------------------------------------------■
-【MontFerret / ferret】(https://github.com/MontFerret/ferret)
-Lang:Go	Fork:32	⭐️1009	⭐️915 stars today
-Declarative web scraping
-■---------------------------------------------------------------------------■
-【sourcegraph / sourcegraph】(https://github.com/sourcegraph/sourcegraph)
-Lang:Go	Fork:68	⭐️1951	⭐️793 stars today
-Code search and intelligence, self-hosted and scalable
-■---------------------------------------------------------------------------■
-【spiral / roadrunner】(https://github.com/spiral/roadrunner)
-Lang:Go	Fork:43	⭐️1277	⭐️156 stars today
-High-performance PHP application server, load-balancer and process manager written in Golang
-■---------------------------------------------------------------------------■
-```
 
 # Appendix (Using as GitHub Trending API for Golang)
 [![GoDoc](https://godoc.org/github.com/inabajunmr/treview/github?status.svg)](https://godoc.org/github.com/inabajunmr/treview/github)
