@@ -8,19 +8,19 @@ import (
 )
 
 // Config for treview
-type Config struct {
+type config struct {
 	Lang []string `yaml:"lang"`
 }
 
 // Read config
-func read(path string) Config {
+func read(path string) config {
 	buf, err := ioutil.ReadFile(path)
 	if err != nil {
 		print("Config is something wrong.")
 		os.Exit(1)
 	}
 
-	var d Config
+	var d config
 	err = yaml.Unmarshal(buf, &d)
 	if err != nil {
 		print("Config is something wrong.")
@@ -31,7 +31,7 @@ func read(path string) Config {
 }
 
 // Write config
-func write(path string, conf Config) {
+func write(path string, conf config) {
 	buf, err := yaml.Marshal(conf)
 	if err != nil {
 		print("Failed to write config.")
@@ -46,7 +46,7 @@ func write(path string, conf Config) {
 
 // SetLangs to config
 func SetLangs(path string, langs []string) {
-	conf := Config{Lang: langs}
+	conf := config{Lang: langs}
 	write(path, conf)
 }
 

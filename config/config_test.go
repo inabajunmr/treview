@@ -14,7 +14,7 @@ func TestWriteRead(t *testing.T) {
 	dir := os.TempDir()
 	path := dir + "/" + uuid.New().String()
 
-	conf := Config{Lang: []string{"go", "javascript"}}
+	conf := config{Lang: []string{"go", "javascript"}}
 	fmt.Println(path)
 	write(path, conf)
 
