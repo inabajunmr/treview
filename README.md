@@ -44,7 +44,7 @@ You can set config by `treview config` command too.
 ![treview](https://user-images.githubusercontent.com/10000393/46802798-656af980-cd99-11e8-88fb-a91a72fbfcfd.gif)
 
 ### Example
-If you have follow config, treview show only Golang and JavaScript repositories by `treview` command (without lang flag).
+If you have following config, treview show only Golang and JavaScript repositories by `treview` command (without lang flag).
 ```yaml
 lang:  [go, javascript]
 ```
