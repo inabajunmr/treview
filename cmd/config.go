@@ -28,6 +28,10 @@ var configCmd = &cobra.Command{
 				os.Exit(1)
 			}
 
+			if flangs == nil {
+				break
+			}
+
 			flangs = append(flangs, ".exit")
 
 			var result string
@@ -75,6 +79,10 @@ func filterLang(allLangs []string) ([]string, error) {
 		if err != nil {
 			fmt.Printf("Prompt failed %v\n", err)
 			return nil, err
+		}
+
+		if l == "" {
+			return nil, nil
 		}
 
 		var fLangs []string
