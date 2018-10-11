@@ -8,8 +8,8 @@ import (
 
 	"github.com/inabajunmr/treview/config"
 	"github.com/inabajunmr/treview/github/trending"
-	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
+	survey "gopkg.in/AlecAivazis/survey.v1"
 )
 
 var configCmd = &cobra.Command{
@@ -17,11 +17,7 @@ var configCmd = &cobra.Command{
 	Short: "Setting for default langage configration.",
 	Run: func(cmd *cobra.Command, args []string) {
 
-		allLangs, err := trending.FindLangs()
-		if err != nil {
-			fmt.Println("Prompt error.")
-			os.Exit(1)
-		}
+		allLangs := trending.FindLangs()
 
 		var langs []string
 
@@ -32,14 +28,20 @@ var configCmd = &cobra.Command{
 				os.Exit(1)
 			}
 
-			prompt := promptui.Select{
-				Label: "Select lang",
-				Items: flangs,
-			}
+			flangs = append(flangs, ".exit")
 
-			_, result, err := prompt.Run()
+			var result string
+			prompt := &survey.Select{
+				Message: "Choose a lang:",
+				Options: flangs,
+			}
+			err = survey.AskOne(prompt, &result, nil)
 
 			if err != nil {
+				break
+			}
+
+			if result == ".exit" {
 				break
 			}
 
@@ -62,14 +64,13 @@ var configCmd = &cobra.Command{
 }
 
 func filterLang(allLangs []string) ([]string, error) {
-
-	prompt := promptui.Prompt{
-		Label: "lang",
+	prompt := &survey.Input{
+		Message: "lang",
 	}
 
 	for {
-
-		filter, err := prompt.Run()
+		var l string
+		err := survey.AskOne(prompt, &l, nil)
 
 		if err != nil {
 			fmt.Printf("Prompt failed %v\n", err)
@@ -78,13 +79,13 @@ func filterLang(allLangs []string) ([]string, error) {
 
 		var fLangs []string
 		for _, lang := range allLangs {
-			if strings.Contains(lang, filter) {
+			if strings.Contains(lang, l) {
 				fLangs = append(fLangs, lang)
 			}
 		}
 
 		if len(fLangs) == 0 {
-			fmt.Println("No langage matched by " + filter + ".")
+			fmt.Println("No langage matched by " + l + ".")
 			continue
 		}
 

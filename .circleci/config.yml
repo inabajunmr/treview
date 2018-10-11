@@ -18,7 +18,7 @@ jobs:
       - run: go get github.com/spf13/cobra
       - run: go get github.com/ghodss/yaml
       - run: go get github.com/google/uuid
-      - run: go get github.com/manifoldco/promptui
+      - run: go get gopkg.in/AlecAivazis/survey.v1
       - run:
           name: Run unit tests
           command: |

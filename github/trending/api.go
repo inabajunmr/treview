@@ -62,7 +62,7 @@ func FindTrending(lang string, span Span) ([]Repository, error) {
 }
 
 // FindLangs from GitHub trending
-func FindLangs() ([]string, error) {
+func FindLangs() []string {
 	url := "https://github.com/trending"
 
 	// access to github
@@ -75,7 +75,9 @@ func FindLangs() ([]string, error) {
 	doc, err := goquery.NewDocumentFromReader(resp.Body)
 
 	if err != nil {
-		return nil, err
+		print("Can not get langs from " + url)
+		print(err)
+		os.Exit(1)
 	}
 
 	var langs []string
@@ -87,7 +89,7 @@ func FindLangs() ([]string, error) {
 		langs = append(langs, query)
 	})
 
-	return langs, nil
+	return langs
 
 }
 
