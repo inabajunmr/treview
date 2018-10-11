@@ -10,7 +10,6 @@ import (
 )
 
 func TestWriteRead(t *testing.T) {
-	// First day
 	dir := os.TempDir()
 	path := dir + "/" + uuid.New().String()
 
@@ -22,4 +21,15 @@ func TestWriteRead(t *testing.T) {
 		t.Fatal("Not equal wrriten conf and read conf.")
 	}
 
+}
+
+func TestLangOperate(t *testing.T) {
+	dir := os.TempDir()
+	path := dir + "/" + uuid.New().String()
+	langs := []string{"go", "javascript"}
+	SetLangs(path, langs)
+
+	if !reflect.DeepEqual(GetLangs(path), langs) {
+		t.Fatal("Not equal wrriten conf and read conf.")
+	}
 }
