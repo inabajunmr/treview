@@ -10,7 +10,7 @@ Viewer for GitHub Trending.
 # Feature
 
 * shows only today's newcomer repository.(You never see same project everyday!)
-* define default langage that you want to see
+* define default langage that you want to see.
 
 # Install
 ```
