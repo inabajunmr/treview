@@ -5,7 +5,7 @@ require (
 	github.com/andybalholm/cascadia v1.0.0 // indirect
 	github.com/ghodss/yaml v1.0.0
 	github.com/google/uuid v1.0.0
-	github.com/inabajunmr/kevaf v0.0.0-20181013071412-2a69830ad969
+	github.com/inabajunmr/kevaf v1.0.0
 	github.com/jonboulle/clockwork v0.1.0
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 // indirect
 	github.com/mattn/go-colorable v0.0.9 // indirect
