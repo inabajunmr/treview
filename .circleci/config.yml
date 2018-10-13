@@ -3,6 +3,8 @@ jobs:
   build:
     docker:
       - image: circleci/golang:1.11.1
+        environment:
+          GO111MODULE: "on"      
     working_directory: /go/src/github.com/inabajunmr/treview
     environment:
       TEST_RESULTS: /tmp/test-results
@@ -12,9 +14,6 @@ jobs:
       - restore_cache:
           keys:
             - v1-pkg-cache
-      - run:
-          name: version
-          command: go version      
       - run:
           name: Run unit tests
           command: |
