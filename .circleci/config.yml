@@ -2,7 +2,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/golang:1.8
+      - image: circleci/golang:1.11.1
+        environment:
+          GO111MODULE: "on"      
     working_directory: /go/src/github.com/inabajunmr/treview
     environment:
       TEST_RESULTS: /tmp/test-results
@@ -12,13 +14,6 @@ jobs:
       - restore_cache:
           keys:
             - v1-pkg-cache
-      - run: go get github.com/PuerkitoBio/goquery
-      - run: go get github.com/inabajunmr/kevaf
-      - run: go get github.com/jonboulle/clockwork
-      - run: go get github.com/spf13/cobra
-      - run: go get github.com/ghodss/yaml
-      - run: go get github.com/google/uuid
-      - run: go get gopkg.in/AlecAivazis/survey.v1
       - run:
           name: Run unit tests
           command: |
