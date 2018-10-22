@@ -72,8 +72,18 @@ var rootCmd = &cobra.Command{
 			repos = f.OnlyNewComer(repos)
 		}
 
-		fmt.Println("■---------------------------------------------------------------------------■")
+		// distinct
+		var distinctRepos []trending.Repository
+		repoNames := map[string]bool{}
 		for _, repo := range repos {
+			if !repoNames[repo.Name] {
+				repoNames[repo.Name] = true
+				distinctRepos = append(distinctRepos, repo)
+			}
+		}
+
+		fmt.Println("■---------------------------------------------------------------------------■")
+		for _, repo := range distinctRepos {
 			repo.Print()
 			fmt.Println("■---------------------------------------------------------------------------■")
 		}
@@ -97,4 +107,17 @@ func init() {
 func exists(name string) bool {
 	_, err := os.Stat(name)
 	return !os.IsNotExist(err)
+}
+
+func distinctByName(repos []trending.Repository) []trending.Repository {
+	var distinctRepos []trending.Repository
+	repoNames := map[string]bool{}
+	for _, repo := range repos {
+		if !repoNames[repo.Name] {
+			repoNames[repo.Name] = true
+			distinctRepos = append(distinctRepos, repo)
+		}
+	}
+
+	return distinctRepos
 }
