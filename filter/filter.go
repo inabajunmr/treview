@@ -114,3 +114,19 @@ func exists(name string) bool {
 	_, err := os.Stat(name)
 	return !os.IsNotExist(err)
 }
+
+// DistinctRepository by repository name
+func DistinctRepository(repos []trending.Repository) []trending.Repository {
+
+	var distinctRepos []trending.Repository
+	repoNames := map[string]bool{}
+	for _, repo := range repos {
+		if !repoNames[repo.Name] {
+			repoNames[repo.Name] = true
+			distinctRepos = append(distinctRepos, repo)
+		}
+	}
+
+	return distinctRepos
+
+}
