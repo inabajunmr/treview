@@ -47,15 +47,22 @@ var rootCmd = &cobra.Command{
 		span := trending.GetSpanByString(s)
 
 		// access to github
+		c := make(chan []trending.Repository, len(langs))
+
 		var repos []trending.Repository
 		for _, lang := range langs {
-			findRepos, err := trending.FindTrending(lang, span)
-			if err != nil {
-				println(err)
-				os.Exit(1)
-			}
+			go func(l string) {
+				findRepos, err := trending.FindTrending(l, span)
+				if err != nil {
+					println(err)
+					os.Exit(1)
+				}
+				c <- findRepos
+			}(lang)
+		}
 
-			repos = append(repos, findRepos...)
+		for range langs {
+			repos = append(repos, <-c...)
 		}
 
 		f, err := cmd.Flags().GetString("filter")
