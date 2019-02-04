@@ -69,7 +69,7 @@ func TestIsSameDate(t *testing.T) {
 	}
 
 	if isSameDate(d1, d4) {
-		// Different yeah
+		// Different year
 		t.Fatal("Same date.")
 	}
 
