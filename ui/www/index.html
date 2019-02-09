@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Treview | Viewer for GitHub Trending.</title>
+  <link rel="stylesheet" href="https://bulma.io/css/bulma-docs.min.css?v=201805251848">
+</head>
+
+<body onload=load()>
+  <div id="app">
+    <section class="hero is-dark">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Treview
+          </h1>
+          <h2 class="subtitle">
+            Viewer for GitHub Trending.
+          </h2>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <section class="main-content columns is-fullheight">
+        <div class="container column is-9">
+          <div class="section">
+            <div class="tile is-parent" v-for="repo in repos">
+              <article class="tile is-child box">
+                <p class="title"><a href="https://github.com/usefathom/fathom">{{ repo.Name }}</a></p>
+                <div class="columns">
+                  <div class="subtitle column">{{ repo.Lang }}</div>
+                  <div class="column">
+                    Forks {{ repo.Fork }}
+                  </div>
+                  <div class="column">
+                    ⭐️{{ repo.Star }}
+                  </div>
+                  <div class="column">
+                    ⭐️{{ repo.StarBySpan }} stars today
+                  </div>
+                </div>
+                <div class="content">
+                  <p>{{ repo.Description }}</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <aside class="column is-3 is-narrow-mobile is-fullheight section">
+
+          <div class="field">
+            <label class="label">Language</label>
+            <div class="control">
+              <div class="select">
+                <select v-model="condition.Lang">
+                  <option></option>
+                  <option>all</option>
+                  <option v-for="lang in langs">{{ lang }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Span</label>
+            <div class="control">
+              <div class="select">
+                <select v-model="condition.Span">
+                  <option>today</option>
+                  <option>week</option>
+                  <option>month</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label class="checkbox">
+              <input type="checkbox" v-model="condition.OnlyNew">
+              Newcomer Only
+            </label>
+          </div>
+          <!--
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-link">Config</button>
+            </div>
+          </div>
+          -->
+        </aside>
+      </section>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+  <script src="./app.js"></script>
+
+</body>
+</html>
