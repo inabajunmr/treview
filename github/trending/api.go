@@ -81,7 +81,8 @@ func FindLangs() []string {
 	}
 
 	var langs []string
-	doc.Find("div.select-menu.js-menu-container.js-select-menu:nth-child(2) div.select-menu-list .select-menu-item").Each(func(i int, s *goquery.Selection) {
+
+	doc.Find("details > details-menu > div.select-menu-list > div > a").Each(func(i int, s *goquery.Selection) {
 		lang, _ := s.Attr("href")
 		langURL := cleansing(lang)
 		rep := regexp.MustCompile(`.*/(.*)\?since=daily`)
