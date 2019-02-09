@@ -42,8 +42,3 @@ func GetRepositories(span trending.Span, langs []string, isOnlyNew bool) []trend
 	// distinct by name
 	return filter.DistinctRepository(repos)
 }
-
-func exists(name string) bool {
-	_, err := os.Stat(name)
-	return !os.IsNotExist(err)
-}
