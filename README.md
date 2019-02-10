@@ -5,7 +5,13 @@
 
 Viewer for GitHub Trending.
 
+## CLI
 ![treview](https://user-images.githubusercontent.com/10000393/46803178-6ea89600-cd9a-11e8-8ca6-ad52c58ed942.gif)
+
+## GUI
+![treview](https://user-images.githubusercontent.com/10000393/52535598-bdd7f500-2d93-11e9-9f61-82835453a863.png)
+
+
 
 # Feature
 
