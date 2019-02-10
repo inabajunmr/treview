@@ -37,15 +37,15 @@ func TestPrint(t *testing.T) {
 }
 
 func TestGetQueryForSpan(t *testing.T) {
-	if value := getQueryForSpan(Today); value != "today" {
+	if value := getQueryForSpan(Today); value != "daily" {
 		t.Fatal("It's not expected value by Today. value:" + value)
 	}
 
-	if value := getQueryForSpan(Week); value != "week" {
+	if value := getQueryForSpan(Week); value != "weekly" {
 		t.Fatal("It's not expected value by Week. value:" + value)
 	}
 
-	if value := getQueryForSpan(Month); value != "month" {
+	if value := getQueryForSpan(Month); value != "monthly" {
 		t.Fatal("It's not expected value by Month. value:" + value)
 	}
 

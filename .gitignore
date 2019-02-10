@@ -14,3 +14,8 @@
 # IntelliJ IDEA
 .idea/
 
+# Macos
+.DS_Store
+
+# binary
+Treview.app

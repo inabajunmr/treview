@@ -143,13 +143,13 @@ func (repo *Repository) ToString() string {
 func getQueryForSpan(span Span) string {
 	switch span {
 	case Today:
-		return "today"
+		return "daily"
 	case Week:
-		return "week"
+		return "weekly"
 	case Month:
-		return "month"
+		return "monthly"
 	default:
-		return "today"
+		return "daily"
 	}
 }
 
