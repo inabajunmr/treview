@@ -11,6 +11,7 @@ Viewer for GitHub Trending.
 
 * shows only today's newcomer repository.(You never see same project everyday!)
 * define default langage that you want to see.
+* [GUI for macos](https://github.com/inabajunmr/treview/releases)
 
 # Install
 ```
