@@ -14,9 +14,13 @@ Viewer for GitHub Trending.
 * [GUI for macos](https://github.com/inabajunmr/treview/releases)
 
 # Install
+## CLI
 ```
 $ go get github.com/inabajunmr/treview
 ```
+
+## GUI
+Download from [GUI for macos](https://github.com/inabajunmr/treview/releases).
 
 # Usage
 ```
