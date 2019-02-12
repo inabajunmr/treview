@@ -53,9 +53,9 @@ func FindTrending(lang string, span Span) ([]Repository, error) {
 	}
 
 	// correct repositories
-	repos := make([]Repository, 25)
+	repos := make([]Repository, 0, 25)
 	doc.Find("div.explore-content > ol > li").Each(func(i int, s *goquery.Selection) {
-		repos[i] = getRepositoryBySelection(s)
+		repos = append(repos, getRepositoryBySelection(s))
 	})
 
 	return repos, nil
