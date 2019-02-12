@@ -5,18 +5,10 @@ let vm = new Vue({
         repos: [],
         langs: [],
         condition: {
-            Lang: "Config",
+            Langs: ["Config"],
             Span: "today",
             OnlyNew: true
         },
-        selectedTags: [
-            'tags',
-            'selected',
-            'by',
-            'default',
-        ],
-        // ALTERNATIVELY
-        selectedTags: 'tags,selected,by,default',    
         watch: {
             condition: {
                 handler: function (val, oldVal) {
@@ -24,6 +16,16 @@ let vm = new Vue({
                 },
                 deep: true
             }
-        }        
+        },
+    },
+    computed: {
+        langObjects: function () {
+            var obj = {};
+            for (val of this.langs) {
+                obj[val] = val;
+            }
+            return obj
+        }
     }
+
 })

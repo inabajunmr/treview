@@ -50,12 +50,14 @@
         </div>
 
         <aside class="column is-3 is-narrow-mobile is-fullheight section">
+          <div class="field">
+            <label class="label">Languages</label>
+            <div class="control">
 
-          <voerro-tags-input element-id="tags" existing-tags="{ 
-            'web-development': 'Web Development',
-            'php': 'PHP',
-            'javascript': 'JavaScript',
-        }" only-existing-tags="onlyExistingTags" typeahead="typeahead" v-model="selectedTags"></voerro-tags-input>
+              <voerro-tags-input element-id="tags" v-bind:existing-tags="langObjects" :typeahead=true v-model="condition.Langs">
+              </voerro-tags-input>
+            </div>
+          </div>
           <div class="field">
             <label class="label">Span</label>
             <div class="control">
