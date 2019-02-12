@@ -1,5 +1,6 @@
 let vm = new Vue({
     el: '#app',
+    components: { VoerroTagsInput },
     data: {
         repos: [],
         langs: [],
@@ -7,14 +8,22 @@ let vm = new Vue({
             Lang: "Config",
             Span: "today",
             OnlyNew: true
-        }
-    },
-    watch: {
-        condition: {
-            handler: function (val, oldVal) {
-                reload(val)
-            },
-            deep: true
-        }
+        },
+        selectedTags: [
+            'tags',
+            'selected',
+            'by',
+            'default',
+        ],
+        // ALTERNATIVELY
+        selectedTags: 'tags,selected,by,default',    
+        watch: {
+            condition: {
+                handler: function (val, oldVal) {
+                    reload(val)
+                },
+                deep: true
+            }
+        }        
     }
 })
