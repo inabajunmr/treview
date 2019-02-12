@@ -5,7 +5,7 @@ let vm = new Vue({
         repos: [],
         langs: [],
         condition: {
-            Langs: ["Config"],
+            Langs: [],
             Span: "today",
             OnlyNew: true
         },
