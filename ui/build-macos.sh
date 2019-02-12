@@ -2,6 +2,7 @@
 
 APP="Treview.app"
 mkdir -p $APP/Contents/{MacOS,Resources}
+go run gen.go
 go build -o $APP/Contents/MacOS/treview
 cat > $APP/Contents/Info.plist << EOF
 <?xml version="1.0" encoding="UTF-8"?>
