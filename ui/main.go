@@ -15,7 +15,7 @@ import (
 
 type Condition struct {
 	Span    string
-	Lang    string
+	Langs   []string
 	OnlyNew bool
 }
 
@@ -79,9 +79,8 @@ func load() {
 }
 
 func reloadRepositories(cond Condition) {
-	langs := []string{cond.Lang}
 	span := trending.GetSpanByString(cond.Span)
-	repos := treview.GetRepositories(span, langs, cond.OnlyNew)
+	repos := treview.GetRepositories(span, cond.Langs, cond.OnlyNew)
 	bindRepositories(repos)
 }
 

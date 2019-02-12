@@ -9,14 +9,14 @@ let vm = new Vue({
             Span: "today",
             OnlyNew: true
         },
-        watch: {
-            condition: {
-                handler: function (val, oldVal) {
-                    reload(val)
-                },
-                deep: true
-            }
-        },
+    },
+    watch: {
+        condition: {
+            handler: function (val, oldVal) {
+                reload(val)
+            },
+            deep: true
+        }
     },
     computed: {
         langObjects: function () {
