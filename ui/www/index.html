@@ -28,7 +28,7 @@
           <div class="section">
             <div class="tile is-parent" v-for="repo in repos">
               <article class="tile is-child box">
-                <p class="title"><a href="https://github.com/usefathom/fathom">{{ repo.Name }}</a></p>
+                <p class="title"><a :href="repo.URL" target="_blank">{{ repo.Name }}</a></p>
                 <div class="columns">
                   <div class="subtitle column">{{ repo.Lang }}</div>
                   <div class="column">
@@ -96,4 +96,5 @@
   <script src="./app.js"></script>
 
 </body>
+
 </html>
