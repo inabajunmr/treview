@@ -1,13 +1,14 @@
 let vm = new Vue({
     el: '#app',
+    components: { VoerroTagsInput },
     data: {
         repos: [],
         langs: [],
         condition: {
-            Lang: "Config",
+            Langs: [],
             Span: "today",
             OnlyNew: true
-        }
+        },
     },
     watch: {
         condition: {
@@ -16,5 +17,15 @@ let vm = new Vue({
             },
             deep: true
         }
+    },
+    computed: {
+        langObjects: function () {
+            var obj = {};
+            for (val of this.langs) {
+                obj[val] = val;
+            }
+            return obj
+        }
     }
+
 })

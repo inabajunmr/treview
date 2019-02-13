@@ -15,7 +15,7 @@ import (
 
 type Condition struct {
 	Span    string
-	Lang    string
+	Langs   []string
 	OnlyNew bool
 }
 
@@ -61,7 +61,6 @@ func main() {
 
 func serveContents(ln net.Listener) {
 	err := http.Serve(ln, http.FileServer(FS))
-	ui.Eval(`console.log("served");`)
 
 	if err != nil {
 		log.Fatal(err)
@@ -70,18 +69,18 @@ func serveContents(ln net.Listener) {
 }
 
 func load() {
-
+	langs := treview.GetLangs("")
 	span := trending.GetSpanByString("today")
-	repos := treview.GetRepositories(span, treview.GetLangs(""), true)
+	repos := treview.GetRepositories(span, langs, true)
 	bindRepositories(repos)
 
 	bindLangs(trending.FindLangs())
+	bindConfigLangs(langs)
 }
 
 func reloadRepositories(cond Condition) {
-	langs := []string{cond.Lang}
 	span := trending.GetSpanByString(cond.Span)
-	repos := treview.GetRepositories(span, langs, cond.OnlyNew)
+	repos := treview.GetRepositories(span, cond.Langs, cond.OnlyNew)
 	bindRepositories(repos)
 }
 
@@ -93,4 +92,9 @@ func bindRepositories(repos []trending.Repository) {
 func bindLangs(langs []string) {
 	val, _ := json.Marshal(langs)
 	ui.Eval("vm.langs = " + string(val[:]))
+}
+
+func bindConfigLangs(langs []string) {
+	val, _ := json.Marshal(langs)
+	ui.Eval("vm.condition.Langs = " + string(val[:]))
 }

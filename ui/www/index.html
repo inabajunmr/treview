@@ -50,17 +50,12 @@
         </div>
 
         <aside class="column is-3 is-narrow-mobile is-fullheight section">
-
           <div class="field">
-            <label class="label">Language</label>
+            <label class="label">Languages</label>
             <div class="control">
-              <div class="select">
-                <select v-model="condition.Lang">
-                  <option></option>
-                  <option>all</option>
-                  <option v-for="lang in langs">{{ lang }}</option>
-                </select>
-              </div>
+
+              <voerro-tags-input element-id="tags" v-bind:existing-tags="langObjects" :typeahead=true v-model="condition.Langs">
+              </voerro-tags-input>
             </div>
           </div>
           <div class="field">
@@ -93,6 +88,8 @@
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@voerro/vue-tagsinput@1.8.0/dist/voerro-vue-tagsinput.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@voerro/vue-tagsinput@1.8.0/dist/style.css">
   <script src="./app.js"></script>
 
 </body>
