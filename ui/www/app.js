@@ -6,6 +6,7 @@ let vm = new Vue({
         langs: [],
         condition: {
             Langs: [],
+            CloneLangs: [],
             Span: "today",
             OnlyNew: true
         },
@@ -14,6 +15,10 @@ let vm = new Vue({
         condition: {
             handler: function (val, oldVal) {
                 reload(val)
+                if(val.Langs.slice().sort().toString() != val.CloneLangs.slice().sort().toString()) {
+                    updateConfig(val.Langs)
+                    val.CloneLangs = val.Langs.slice()
+                }
             },
             deep: true
         }
