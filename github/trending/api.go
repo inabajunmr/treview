@@ -54,7 +54,7 @@ func FindTrending(lang string, span Span) ([]Repository, error) {
 
 	// correct repositories
 	repos := make([]Repository, 0, 25)
-	doc.Find("div.explore-content > ol > li").Each(func(i int, s *goquery.Selection) {
+	doc.Find("article.Box-row").Each(func(i int, s *goquery.Selection) {
 		repos = append(repos, getRepositoryBySelection(s))
 	})
 
@@ -95,9 +95,9 @@ func FindLangs() []string {
 }
 
 func getRepositoryBySelection(s *goquery.Selection) Repository {
-	name := cleansing(s.Find("div.d-inline-block.col-9.mb-1 > h3 > a").Text())
+	name := cleansing(s.Find("a").Text())
 	url, _ := s.Find("a").Attr("href")
-	description := cleansing(s.Find("div.py-1").Text())
+	description := cleansing(s.Find("p").Text())
 	lang := cleansing(s.Find("span[itemprop='programmingLanguage']").Text())
 	star := cleansingNum(s.Find("div.f6.text-gray.mt-2 > a:nth-child(2)").Text())
 	fork := cleansingNum(s.Find("div.f6.text-gray.mt-2 > a:nth-child(3)").Text())
