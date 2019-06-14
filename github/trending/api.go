@@ -95,8 +95,8 @@ func FindLangs() []string {
 }
 
 func getRepositoryBySelection(s *goquery.Selection) Repository {
-	name := cleansing(s.Find("a").Text())
-	url, _ := s.Find("a").Attr("href")
+	name := cleansing(s.Find("h1.lh-condensed").Text())
+	url, _ := s.Find("h1.lh-condensed a").Attr("href")
 	description := cleansing(s.Find("p").Text())
 	lang := cleansing(s.Find("span[itemprop='programmingLanguage']").Text())
 	star := cleansingNum(s.Find("div.f6.text-gray.mt-2 > a:nth-child(2)").Text())
