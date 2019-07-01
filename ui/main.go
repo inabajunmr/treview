@@ -7,6 +7,7 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"os/user"
 
 	"github.com/inabajunmr/treview/github/trending"
 	treview "github.com/inabajunmr/treview/service"
@@ -22,11 +23,28 @@ type Condition struct {
 var ui lorca.UI
 
 func main() {
+	// setup log
+	usr, err := user.Current()
+	if err != nil {
+		os.Exit(1)
+	}
+
+	path := usr.HomeDir + "/.treview/treview.log"
+
+	logfile, err := os.OpenFile(path, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		panic("cannnot open test.log:" + err.Error())
+	}
+	log.SetOutput(logfile)
+
+	defer logfile.Close()
+
+	// init lorca
 	ui, _ = lorca.New("", "", 1280, 800)
 
 	defer ui.Close()
 
-	err := ui.Bind("load", load)
+	err = ui.Bind("load", load)
 	if err != nil {
 		log.Fatal(err)
 		os.Exit(1)
