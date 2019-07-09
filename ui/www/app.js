@@ -16,6 +16,7 @@ let vm = new Vue({
             handler: function (val, oldVal) {
                 reload(val)
                 if(val.Langs.slice().sort().toString() != val.CloneLangs.slice().sort().toString()) {
+                    console.log("update config")
                     updateConfig(val.Langs)
                     val.CloneLangs = val.Langs.slice()
                 }

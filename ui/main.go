@@ -9,9 +9,9 @@ import (
 	"os"
 	"os/user"
 
+	"github.com/inabajunmr/treview/config"
 	"github.com/inabajunmr/treview/github/trending"
 	treview "github.com/inabajunmr/treview/service"
-	"github.com/inabajunmr/treview/config"
 	"github.com/zserge/lorca"
 )
 
@@ -110,6 +110,7 @@ func reloadRepositories(cond Condition) {
 }
 
 func updateConfig(langs []string) {
+	log.Println(langs)
 
 	usr, err := user.Current()
 	if err != nil {
@@ -145,4 +146,3 @@ func bindConfigLangs(langs []string) {
 	ui.Eval("vm.condition.Langs = " + string(val[:]))
 	ui.Eval("vm.condition.CloneLangs = " + string(val[:]))
 }
-
