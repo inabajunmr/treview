@@ -2,6 +2,7 @@ package config
 
 import (
 	"io/ioutil"
+	"log"
 	"os"
 
 	"github.com/ghodss/yaml"
@@ -34,12 +35,12 @@ func read(path string) config {
 func write(path string, conf config) {
 	buf, err := yaml.Marshal(conf)
 	if err != nil {
-		print("Failed to write config.")
+		log.Fatal(err)
 		os.Exit(1)
 	}
 
 	if err = ioutil.WriteFile(path, buf, 0666); err != nil {
-		print("Failed to write config.")
+		log.Fatal(err)
 		os.Exit(1)
 	}
 }
