@@ -22,8 +22,8 @@ func read(path string) config {
 	}
 
 	var d config
-	err = yaml.Unmarshal(buf, &d)
-	if err != nil {
+
+	if err = yaml.Unmarshal(buf, &d); err != nil {
 		print("Config is something wrong.")
 		os.Exit(1)
 	}
