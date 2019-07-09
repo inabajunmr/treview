@@ -11,8 +11,8 @@ func TestFindTrending(t *testing.T) {
 		t.Fatal("Error by find.", err)
 	}
 
-	if len(repos) != 25 {
-		t.Fatal("Not return 25 repositories.", err)
+	if len(repos) < 10 {
+		t.Fatal("Not return enough numbers of repositories.", err)
 	}
 }
 

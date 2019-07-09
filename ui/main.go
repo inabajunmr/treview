@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/user"
 
+	"github.com/inabajunmr/treview/config"
 	"github.com/inabajunmr/treview/github/trending"
 	treview "github.com/inabajunmr/treview/service"
 	"github.com/zserge/lorca"
@@ -51,6 +52,12 @@ func main() {
 	}
 
 	err = ui.Bind("reload", reloadRepositories)
+	if err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
+
+	err = ui.Bind("updateConfig", updateConfig)
 	if err != nil {
 		log.Fatal(err)
 		os.Exit(1)
@@ -102,6 +109,28 @@ func reloadRepositories(cond Condition) {
 	bindRepositories(repos)
 }
 
+func updateConfig(langs []string) {
+	log.Println(langs)
+
+	usr, err := user.Current()
+	if err != nil {
+		os.Exit(1)
+	}
+
+	path := usr.HomeDir + "/.treview"
+	cpath := path + "/.config"
+
+	if exists(cpath) {
+		// using default from conf
+		config.SetLangs(cpath, langs)
+	}
+}
+
+func exists(name string) bool {
+	_, err := os.Stat(name)
+	return !os.IsNotExist(err)
+}
+
 func bindRepositories(repos []trending.Repository) {
 	val, _ := json.Marshal(repos)
 	ui.Eval("vm.repos = " + string(val[:]))
@@ -115,4 +144,5 @@ func bindLangs(langs []string) {
 func bindConfigLangs(langs []string) {
 	val, _ := json.Marshal(langs)
 	ui.Eval("vm.condition.Langs = " + string(val[:]))
+	ui.Eval("vm.condition.CloneLangs = " + string(val[:]))
 }
