@@ -110,8 +110,6 @@ func reloadRepositories(cond Condition) {
 }
 
 func updateConfig(langs []string) {
-	log.Println(langs)
-
 	usr, err := user.Current()
 	if err != nil {
 		os.Exit(1)
@@ -120,15 +118,7 @@ func updateConfig(langs []string) {
 	path := usr.HomeDir + "/.treview"
 	cpath := path + "/.config"
 
-	if exists(cpath) {
-		// using default from conf
-		config.SetLangs(cpath, langs)
-	}
-}
-
-func exists(name string) bool {
-	_, err := os.Stat(name)
-	return !os.IsNotExist(err)
+	config.SetLangs(cpath, langs)
 }
 
 func bindRepositories(repos []trending.Repository) {
