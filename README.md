@@ -5,30 +5,29 @@
 
 Viewer for GitHub Trending.
 
-## CLI
-![treview](https://user-images.githubusercontent.com/10000393/46803178-6ea89600-cd9a-11e8-8ca6-ad52c58ed942.gif)
-
-## GUI
-![treview](https://user-images.githubusercontent.com/10000393/52535598-bdd7f500-2d93-11e9-9f61-82835453a863.png)
-
-
-
 # Feature
 
 * shows only today's newcomer repository.(You never see same project everyday!)
 * define default langage that you want to see.
 * [GUI for macos](https://github.com/inabajunmr/treview/releases)
 
-# Install
-## CLI
+
+# GUI
+![treview](https://user-images.githubusercontent.com/10000393/60991913-69f32b80-a386-11e9-8ae7-428e3e655777.png)
+
+## Install
+Download from [GUI for macos](https://github.com/inabajunmr/treview/releases).
+
+# CLI
+![treview](https://user-images.githubusercontent.com/10000393/46803178-6ea89600-cd9a-11e8-8ca6-ad52c58ed942.gif)
+## Install
+
 ```
 $ go get github.com/inabajunmr/treview
 ```
 
-## GUI
-Download from [GUI for macos](https://github.com/inabajunmr/treview/releases).
+## Usage
 
-# Usage
 ```
 $ treview -h
 Usage:
