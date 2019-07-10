@@ -110,10 +110,6 @@ func reloadRepositories(cond Condition) {
 }
 
 func updateConfig(langs []string) {
-	langs = langs
-	for _, v := range langs {
-		log.Println("Update lang:" + v)
-	}
 	usr, err := user.Current()
 	if err != nil {
 		os.Exit(1)
@@ -123,17 +119,6 @@ func updateConfig(langs []string) {
 	cpath := path + "/.config"
 
 	config.SetLangs(cpath, langs)
-}
-
-func removeEmpty(strs []string) []string {
-	result := []string{}
-	for _, v := range strs {
-		if v != "" {
-			result = append(result, v)
-		}
-	}
-
-	return result
 }
 
 func bindRepositories(repos []trending.Repository) {
