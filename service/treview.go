@@ -13,6 +13,10 @@ import (
 // GetRepositories return repositories from GitHub by args condition
 func GetRepositories(span trending.Span, langs []string, isOnlyNew bool) []trending.Repository {
 	// access to github
+	if len(langs) == 0 {
+		langs = []string{""}
+	}
+
 	c := make(chan []trending.Repository, len(langs))
 
 	var repos []trending.Repository
@@ -49,7 +53,7 @@ func GetRepositories(span trending.Span, langs []string, isOnlyNew bool) []trend
 // If arg is specified, return just arg. If arg isn't specified, return langs from config file.
 func GetLangs(lang string) []string {
 	if lang == "all" {
-		return []string{""}
+		return []string{}
 	}
 
 	if len(lang) != 0 {
@@ -69,7 +73,7 @@ func GetLangs(lang string) []string {
 		return config.GetLangs(cpath)
 	}
 
-	return []string{""}
+	return []string{}
 }
 
 func exists(name string) bool {
