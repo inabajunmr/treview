@@ -20,6 +20,7 @@ Download from [GUI for macos](https://github.com/inabajunmr/treview/releases).
 
 # CLI
 ![treview](https://user-images.githubusercontent.com/10000393/46803178-6ea89600-cd9a-11e8-8ca6-ad52c58ed942.gif)
+
 ## Install
 
 ```
@@ -47,13 +48,13 @@ Flags:
 Use "treview [command] --help" for more information about a command.
 ```
 
-## Config
+### Config
 If you have file `~/.treview/.config`, you can set default lang by treview.
 You can set config by `treview config` command too.
 
 ![treview](https://user-images.githubusercontent.com/10000393/46802798-656af980-cd99-11e8-88fb-a91a72fbfcfd.gif)
 
-### Example
+#### Example
 If you have following config, treview show only Golang and JavaScript repositories by `treview` command (without lang flag).
 ```yaml
 lang:  [go, javascript]
