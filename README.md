@@ -2,6 +2,7 @@
 
 [![codecov](https://codecov.io/gh/inabajunmr/treview/branch/master/graph/badge.svg)](https://codecov.io/gh/inabajunmr/treview)
 ![CircleCI](https://circleci.com/gh/inabajunmr/treview/tree/master.svg?style=svg)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/inabajunmr/treview.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/inabajunmr/treview/alerts/)
 
 Viewer for GitHub Trending.
 
