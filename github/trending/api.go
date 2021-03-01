@@ -99,8 +99,8 @@ func getRepositoryBySelection(s *goquery.Selection) Repository {
 	url, _ := s.Find("h1.lh-condensed a").Attr("href")
 	description := cleansing(s.Find("p").Text())
 	lang := cleansing(s.Find("span[itemprop='programmingLanguage']").Text())
-	star := cleansingNum(s.Find("div.f6.text-gray.mt-2 > a:nth-child(2)").Text())
-	fork := cleansingNum(s.Find("div.f6.text-gray.mt-2 > a:nth-child(3)").Text())
+	star := cleansingNum(s.Find("div.f6.color-text-secondary.mt-2 > a:nth-child(2)").Text())
+	fork := cleansingNum(s.Find("div.f6.color-text-secondary.mt-2 > a:nth-child(3)").Text())
 	starBySpan := cleansingNum(
 		strings.Replace(s.Find(".float-sm-right").Text(), "stars today", "", -1))
 
