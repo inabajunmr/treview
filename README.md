@@ -12,7 +12,6 @@ Viewer for GitHub Trending.
 * define default langage that you want to see.
 * [GUI for macos](https://github.com/inabajunmr/treview/releases)
 
-
 # GUI
 ![treview](https://user-images.githubusercontent.com/10000393/60991913-69f32b80-a386-11e9-8ae7-428e3e655777.png)
 
@@ -64,9 +63,11 @@ lang:  [go, javascript]
 If you want to find all langage, you set `all` as lang flag.
 
 # Appendix (Using as GitHub Trending API for Golang)
+
 [![GoDoc](https://godoc.org/github.com/inabajunmr/treview/github?status.svg)](https://godoc.org/github.com/inabajunmr/treview/github)
 
 ## Sample
+
 ```go
 package main
 

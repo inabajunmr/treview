@@ -12,7 +12,7 @@ cat > $APP/Contents/Info.plist << EOF
 	<key>CFBundleExecutable</key>
 	<string>treview</string>
 	<key>CFBundleIconFile</key>
-	<string>icon.icns</string>
+	<string>icon</string>
 	<key>CFBundleIdentifier</key>
 	<string>work.inabajun.treview</string>
 </dict>
