@@ -48,25 +48,21 @@ func main() {
 	err = ui.Bind("load", load)
 	if err != nil {
 		log.Fatal(err)
-		os.Exit(1)
 	}
 
 	err = ui.Bind("reload", reloadRepositories)
 	if err != nil {
 		log.Fatal(err)
-		os.Exit(1)
 	}
 
 	err = ui.Bind("updateConfig", updateConfig)
 	if err != nil {
 		log.Fatal(err)
-		os.Exit(1)
 	}
 
 	ln, err := net.Listen("tcp", "127.0.0.1:0")
 	if err != nil {
 		log.Fatal(err)
-		os.Exit(1)
 	}
 	defer ln.Close()
 
@@ -75,7 +71,6 @@ func main() {
 	err = ui.Load(fmt.Sprintf("http://%s", ln.Addr()))
 	if err != nil {
 		log.Fatal(err)
-		os.Exit(1)
 	}
 
 	defer ui.Close()
@@ -89,7 +84,6 @@ func serveContents(ln net.Listener) {
 
 	if err != nil {
 		log.Fatal(err)
-		os.Exit(1)
 	}
 }
 

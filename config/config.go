@@ -36,12 +36,10 @@ func write(path string, conf config) {
 	buf, err := yaml.Marshal(conf)
 	if err != nil {
 		log.Fatal(err)
-		os.Exit(1)
 	}
 
 	if err = ioutil.WriteFile(path, buf, 0666); err != nil {
 		log.Fatal(err)
-		os.Exit(1)
 	}
 }
 
